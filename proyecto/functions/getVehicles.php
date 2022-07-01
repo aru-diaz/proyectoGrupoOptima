@@ -15,6 +15,9 @@ if (isset($_POST['token'])) {
     $("#vehicle").empty();
     $("#vehicle").append("<?php echo $options; ?>");
 
+    $("#vehicleEdit").empty();
+    $("#vehicleEdit").append("<?php echo $options; ?>");
+
 <?php }else{
     die("No puedes entrar aqui");
 }

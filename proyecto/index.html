@@ -17,6 +17,74 @@
 
 <body>
 
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Editar Registro</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form action="functions/registerQuotation.php" method="POST" id="editForm">
+                        <div class="form-group">
+                            <input type="text" id="nameEdit" name="nameEdit" class="form-control"
+                                placeholder="Nombre(S)" maxlength="50" onBlur="validateTextField(this.value,this.id);"
+                                data-validate="false" required>
+                        </div>
+
+                        <div class="form-group">
+                            <input type="text" id="lastNameEdit" name="lastNameEdit" class="form-control"
+                                placeholder="Apellidos" maxlength="100" onBlur="validateTextField(this.value,this.id);"
+                                data-validate="false" required>
+                        </div>
+
+                        <div class="form-group">
+                            <input type="text" id="ageEdit" name="ageEdit" class="form-control" placeholder="Edad"
+                                maxlength="3" onBlur="validateNumberField(this.value,this.id);" data-validate="false"
+                                required>
+                        </div>
+
+                        <div class="form-group">
+                            <input type="text" id="phoneEdit" name="phoneEdit" class="form-control"
+                                placeholder="Número de Teléfono" maxlength="12"
+                                onBlur="validateNumberField(this.value,this.id);" data-validate="false" required>
+                        </div>
+
+                        <div class="form-group">
+                            <input type="text" id="mailEdit" name="mail" class="form-control"
+                                placeholder="Correo Electrónico" mailEdit="100"
+                                onBlur="validateMailField(this.value,this.id);" data-validate="false" required>
+                        </div>
+
+                        <div class="form-group">
+                            <select id="vehicleEdit" name="vehicleEdit" class="form-control"
+                                onBlur="validateSelectField(this.value,this.id,'normal');" data-validate="false"
+                                onChange="loadModel(this.value);" required>
+                                <option value="-1" disabled selected>Seleccione un Auto</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <select id="modelEdit" name="modelEdit" class="form-control"
+                                onBlur="validateSelectField(this.value,this.id);" data-validate="false" disabled
+                                required>
+                                <option value="-1" disabled selected>Seleccione un Modelo</option>
+                            </select>
+                        </div>
+
+                        <input type="hidden" id="token" name="token" value="25e" required>
+
+                        <div class="form-group">
+                            <button type="button" class="btn btn-success btn-block text-white"
+                                onClick="validateSubmit();">Guardar</button>
+                        </div>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container-fluid">
 
@@ -24,15 +92,15 @@
     </nav>
 
     <div class="container py-4">
-
         <div class="row">
+            <!-- REGISTRO -->
             <div class="col-sm-12 col-md-6 col-lg-4 col-xl-4">
 
                 <h2>Registro</h2>
 
                 <div class="card">
                     <div class="card-body">
-                        <form action="registerQuotation.php" method="POST" id="form">
+                        <form action="functions/registerQuotation.php" method="POST" id="form">
                             <div class="form-group">
                                 <input type="text" id="name" name="name" class="form-control" placeholder="Nombre(S)"
                                     maxlength="50" onBlur="validateTextField(this.value,this.id);" data-validate="false"
@@ -90,8 +158,9 @@
                     </div>
                 </div>
             </div>
+            <!-- REPORTE -->
             <div class="col-sm-12 col-md-6 col-lg-8 col-xl-8">
-                <h1>Listado de Alumnos</h1>
+                <h1>Reporte</h1>
                 <div class="table-responsive py-2">
                     <table class="table table-striped">
                         <thead>

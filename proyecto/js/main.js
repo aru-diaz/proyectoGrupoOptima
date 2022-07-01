@@ -1,6 +1,7 @@
 'use strict'
 
 $(document).ready(function () {
+    resetFields();
     loadReport();
     loadVehicle();
 });
@@ -17,15 +18,20 @@ const loadVehicle = () => {
     });
 }
 
-const loadModel = (vehicleID) => {
-    let query = "token=" + "25b" + "&vehicleID=" + vehicleID;
+const loadModel = (vehicleID, type, model = 0) => {
+    let query = "token=" + "25b" + "&vehicleID=" + vehicleID + "&type=" + type+ "&model=" + model;
     $.ajax({
         type: "POST",
         url: "http://localhost/proyectoGrupoOptima/proyecto/functions/getModels.php",
         data: query,
         success: function (res) {
             eval(res);
-            document.getElementById("model").disabled = false;
+            if (type == "edit") {
+                document.getElementById("modelEdit").disabled = false;
+                loadModelEdit();
+            } else {
+                document.getElementById("model").disabled = false;
+            }
         }
     });
 }
@@ -54,6 +60,18 @@ const deleteQuotation = (quotationID) => {
             }
         });
     }
+}
+
+const detailQuotation = (quotationID) => {
+    let query = "token=" + "25f" + "&quotationID=" + quotationID;
+    $.ajax({
+        type: "POST",
+        url: "http://localhost/proyectoGrupoOptima/proyecto/functions/getQuotationDetail.php",
+        data: query,
+        success: function (res) {
+            eval(res);
+        }
+    });
 }
 
 
@@ -141,4 +159,15 @@ const validateSubmitErrorMessage = (elementID) => {
         returnErrorMessage("Favor de completar este campo", elementID);
         flag = false;
     }
+}
+
+const resetFields = () => {
+    document.getElementById("name").value = "";
+    document.getElementById("lastName").value = "";
+    document.getElementById("age").value = "";
+    document.getElementById("phone").value = "";
+    document.getElementById("mail").value = "";
+    document.getElementById("vehicle").value = "-1";
+    document.getElementById("model").value = "-1";
+    document.getElementById("model").disabled = true;
 }

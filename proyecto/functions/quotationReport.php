@@ -13,7 +13,7 @@ if (isset($_POST['token'])) {
             $rowsReport .= "<td> " . $row[5] . " </td>";
             $rowsReport .= "<td> " . $row[8] . " </td>";
             $rowsReport .= "<td> " . $row[9] . " </td>";
-            $rowsReport .= "<td><a href='' class='btn btn-info'>Editar</a></td>";
+            $rowsReport .= "<td><a onClick='detailQuotation(" . $row[0] . ");' class='btn btn-info' data-bs-toggle='modal' data-bs-target='#exampleModal'>Editar</a></td>";
             $rowsReport .= "<td><a onClick='deleteQuotation(" . $row[0] . ");' class='btn btn-danger'>Eliminar</a></td>";
             $rowsReport .= "</tr>";
         }
