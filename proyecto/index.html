@@ -13,52 +13,53 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"
         integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
     <script src="js/main.js"></script>
+
 </head>
 
 <body>
 
-    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade" id="myModal" tabindex="-1" aria-labelledby="myModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Editar Registro</h5>
+                    <h5 class="modal-title" id="myModalLabel">Editar Registro</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <form action="functions/registerQuotation.php" method="POST" id="editForm">
+                    <form action="functions/editQuotation.php" method="POST" id="editForm">
                         <div class="form-group">
                             <input type="text" id="nameEdit" name="nameEdit" class="form-control"
                                 placeholder="Nombre(S)" maxlength="50" onBlur="validateTextField(this.value,this.id);"
-                                data-validate="false" required>
+                                data-validate="true" required>
                         </div>
 
                         <div class="form-group">
                             <input type="text" id="lastNameEdit" name="lastNameEdit" class="form-control"
                                 placeholder="Apellidos" maxlength="100" onBlur="validateTextField(this.value,this.id);"
-                                data-validate="false" required>
+                                data-validate="true" required>
                         </div>
 
                         <div class="form-group">
                             <input type="text" id="ageEdit" name="ageEdit" class="form-control" placeholder="Edad"
-                                maxlength="3" onBlur="validateNumberField(this.value,this.id);" data-validate="false"
+                                maxlength="3" onBlur="validateNumberField(this.value,this.id);" data-validate="true"
                                 required>
                         </div>
 
                         <div class="form-group">
                             <input type="text" id="phoneEdit" name="phoneEdit" class="form-control"
                                 placeholder="Número de Teléfono" maxlength="12"
-                                onBlur="validateNumberField(this.value,this.id);" data-validate="false" required>
+                                onBlur="validateNumberField(this.value,this.id);" data-validate="true" required>
                         </div>
 
                         <div class="form-group">
-                            <input type="text" id="mailEdit" name="mail" class="form-control"
-                                placeholder="Correo Electrónico" mailEdit="100"
-                                onBlur="validateMailField(this.value,this.id);" data-validate="false" required>
+                            <input type="text" id="mailEdit" name="mailEdit" class="form-control"
+                                placeholder="Correo Electrónico" maxlength="100"
+                                onBlur="validateMailField(this.value,this.id);" data-validate="true" required>
                         </div>
 
                         <div class="form-group">
                             <select id="vehicleEdit" name="vehicleEdit" class="form-control"
-                                onBlur="validateSelectField(this.value,this.id,'normal');" data-validate="false"
+                                onBlur="validateSelectField(this.value,this.id,'normal');" data-validate="true"
                                 onChange="loadModel(this.value);" required>
                                 <option value="-1" disabled selected>Seleccione un Auto</option>
                             </select>
@@ -66,17 +67,18 @@
 
                         <div class="form-group">
                             <select id="modelEdit" name="modelEdit" class="form-control"
-                                onBlur="validateSelectField(this.value,this.id);" data-validate="false" disabled
+                                onBlur="validateSelectField(this.value,this.id);" data-validate="true" disabled
                                 required>
                                 <option value="-1" disabled selected>Seleccione un Modelo</option>
                             </select>
                         </div>
 
                         <input type="hidden" id="token" name="token" value="25e" required>
+                        <input type="hidden" id="quotationID" name="quotationID" value="" required>
 
                         <div class="form-group">
                             <button type="button" class="btn btn-success btn-block text-white"
-                                onClick="validateSubmit();">Guardar</button>
+                                onClick="validateSubmit('edit');">Guardar</button>
                         </div>
                     </form>
                 </div>
@@ -152,7 +154,7 @@
 
                             <div class="form-group">
                                 <button type="button" class="btn btn-success btn-block text-white"
-                                    onClick="validateSubmit();">Guardar</button>
+                                    onClick="validateSubmit('normal');">Guardar</button>
                             </div>
                         </form>
                     </div>
@@ -162,7 +164,7 @@
             <div class="col-sm-12 col-md-6 col-lg-8 col-xl-8">
                 <h1>Reporte</h1>
                 <div class="table-responsive py-2">
-                    <table class="table table-striped">
+                    <table class="table table-striped" id="myTable">
                         <thead>
                             <tr>
                                 <th>Nombre completo</th>
@@ -190,7 +192,6 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2"
         crossorigin="anonymous"></script>
-
 </body>
 
 </html>

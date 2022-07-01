@@ -3,7 +3,7 @@
 $(document).ready(function () {
     resetFields();
     loadReport();
-    loadVehicle();
+    loadVehicle();    
 });
 
 const loadVehicle = () => {
@@ -19,7 +19,7 @@ const loadVehicle = () => {
 }
 
 const loadModel = (vehicleID, type, model = 0) => {
-    let query = "token=" + "25b" + "&vehicleID=" + vehicleID + "&type=" + type+ "&model=" + model;
+    let query = "token=" + "25b" + "&vehicleID=" + vehicleID + "&type=" + type + "&model=" + model;
     $.ajax({
         type: "POST",
         url: "http://localhost/proyectoGrupoOptima/proyecto/functions/getModels.php",
@@ -77,6 +77,7 @@ const detailQuotation = (quotationID) => {
 
 var flag = true;
 
+
 const validateTextField = (value, elementID) => {
     removeErrorMessage(elementID);
     if (value.length > 1) {
@@ -127,17 +128,30 @@ const validateSelectField = (value, elementID) => {
 }
 
 
-const validateSubmit = () => {
+const validateSubmit = (type) => {
     flag = true;
-    validateSubmitErrorMessage("name");
-    validateSubmitErrorMessage("lastName");
-    validateSubmitErrorMessage("age");
-    validateSubmitErrorMessage("phone");
-    validateSubmitErrorMessage("mail");
-    validateSubmitErrorMessage("vehicle");
-    validateSubmitErrorMessage("model");
-    if (flag == true) {
-        document.getElementById("form").submit();
+    if (type == "edit") {
+        validateSubmitErrorMessage("nameEdit");
+        validateSubmitErrorMessage("lastNameEdit");
+        validateSubmitErrorMessage("ageEdit");
+        validateSubmitErrorMessage("phoneEdit");
+        validateSubmitErrorMessage("mailEdit");
+        validateSubmitErrorMessage("vehicleEdit");
+        validateSubmitErrorMessage("modelEdit");
+        if (flag == true) {
+            document.getElementById("editForm").submit();
+        }
+    } else {
+        validateSubmitErrorMessage("name");
+        validateSubmitErrorMessage("lastName");
+        validateSubmitErrorMessage("age");
+        validateSubmitErrorMessage("phone");
+        validateSubmitErrorMessage("mail");
+        validateSubmitErrorMessage("vehicle");
+        validateSubmitErrorMessage("model");
+        if (flag == true) {
+            document.getElementById("form").submit();
+        }
     }
 }
 
@@ -158,6 +172,7 @@ const validateSubmitErrorMessage = (elementID) => {
         removeErrorMessage(elementID);
         returnErrorMessage("Favor de completar este campo", elementID);
         flag = false;
+
     }
 }
 
