@@ -28,7 +28,7 @@ const loadModel = (vehicleID, type, model = 0) => {
             eval(res);
             if (type == "edit") {
                 document.getElementById("modelEdit").disabled = false;
-                loadModelEdit();
+                
             } else {
                 document.getElementById("model").disabled = false;
             }
