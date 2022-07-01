@@ -19,9 +19,10 @@ CREATE TABLE QUOTATION(
     personName varchar(255) NOT NULL,
     personLastName varchar(255) NOT NULL,
     personAge int NOT NULL,
+    personPhone varchar(30) NOT NULL,
     personMail varchar(255) NOT NULL,
-    vehicleID int,    
-    modelID int,
+    vehicleID int NOT NULL,    
+    modelID int NOT NULL,
     PRIMARY KEY (quotationID),
     FOREIGN KEY (vehicleID) REFERENCES VEHICLE(vehicleID),
     FOREIGN KEY (modelID) REFERENCES MODEL(modelID)
